@@ -3,18 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>好抽工具箱 | 免費線上抽獎工具</title>
-    <meta name="description" content="好抽工具箱提供免費線上抽獎工具，包含名單抽獎、幸運轉盤、數字抽獎、隨機分組與機率抽獎，適合活動、課堂、公司與社群使用。" />
+    <title>好抽工具箱｜免費線上抽獎、轉盤、數字抽選與隨機分組</title>
+    <meta
+      name="description"
+      content="好抽工具箱提供免費線上抽獎工具，包含名單抽獎、幸運轉盤、數字抽獎、隨機分組與機率抽獎，適合課堂活動、直播互動、活動抽獎與團隊分組。"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="好抽工具箱" />
+    <link rel="canonical" href="https://js128815ai01.github.io/lottery-tools/" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="好抽工具箱｜免費線上抽獎工具" />
+    <meta
+      property="og:description"
+      content="免費使用名單抽獎、幸運轉盤、數字抽獎、隨機分組與機率抽獎，資料在瀏覽器本機處理。"
+    />
+    <meta property="og:url" content="https://js128815ai01.github.io/lottery-tools/" />
+    <meta property="og:image" content="https://js128815ai01.github.io/lottery-tools/assets/lottery-hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="好抽工具箱｜免費線上抽獎工具" />
+    <meta
+      name="twitter:description"
+      content="快速完成名單抽獎、轉盤抽選、數字抽號、隨機分組與機率抽獎。"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "好抽工具箱",
+        "url": "https://js128815ai01.github.io/lottery-tools/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "zh-Hant",
+        "description": "免費線上抽獎工具，包含名單抽獎、幸運轉盤、數字抽獎、隨機分組與機率抽獎。"
+      }
+    </script>
   </head>
   <body>
     <header class="topbar">
       <a class="brand" href="#top" aria-label="好抽工具箱首頁">
         <span class="brand-mark">抽</span>
-        <span>免費線上抽獎工具</span>
+        <span>好抽工具箱</span>
       </a>
       <nav class="topnav" aria-label="主要導覽">
-        <a href="#tools">免費抽獎工具</a>
+        <a href="#tools">抽獎工具</a>
         <a href="#guide">使用流程</a>
       </nav>
     </header>
@@ -23,19 +56,21 @@
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Free Online Lottery Toolkit</p>
-          <h1>免費線上抽獎工具，快速開始每一次抽選</h1>
-          <p class="hero-text">免安裝、免登入，名單抽獎、幸運轉盤、數字抽號、隨機分組、機率抽獎，一個頁面就能完成。</p>
+          <h1>免費線上抽獎工具，活動、課堂與直播都能快速使用</h1>
+          <p class="hero-text">
+            免安裝、免註冊，直接輸入名單或條件就能抽選。支援名單抽獎、幸運轉盤、數字抽獎、隨機分組與機率抽獎，資料只在你的瀏覽器中處理。
+          </p>
           <div class="hero-actions">
-            <a class="primary-action" href="#tools">免費開始抽獎</a>
+            <a class="primary-action" href="#tools">開始抽獎</a>
             <a class="secondary-action" href="#guide">查看流程</a>
           </div>
         </div>
-        <div class="hero-media" aria-label="免費線上抽獎工具視覺圖">
-          <img src="assets/lottery-hero.png" alt="免費線上抽獎工具視覺圖，包含轉盤、號碼球與結果卡片" />
+        <div class="hero-media" aria-label="好抽工具箱介面預覽">
+          <img src="assets/lottery-hero.png" alt="好抽工具箱線上抽獎工具介面預覽" />
         </div>
       </section>
 
-      <section class="tool-switcher" id="tools" aria-label="免費線上抽獎工具選單">
+      <section class="tool-switcher" id="tools" aria-label="抽獎工具切換">
         <button class="tool-tab active" data-tool="names" type="button">名單抽獎</button>
         <button class="tool-tab" data-tool="wheel" type="button">幸運轉盤</button>
         <button class="tool-tab" data-tool="numbers" type="button">數字抽獎</button>
@@ -49,29 +84,28 @@
             <div class="section-title">
               <div>
                 <p>名單抽獎</p>
-                <h2>貼上名單，抽出得獎者</h2>
+                <h2>輸入名單，快速抽出中選者</h2>
               </div>
               <label class="privacy-toggle">
                 <input class="privacy-check" type="checkbox" checked />
-                公開資料
+                顯示資料
               </label>
             </div>
-            <div class="privacy-note"><span>名單</span><span class="collapse-icon">收合</span></div>
+            <div class="privacy-note"><span>名單內容</span><span class="collapse-icon">已隱藏</span></div>
             <label class="private-field" for="nameList">名單</label>
             <textarea class="private-content" id="nameList" rows="10">王小明
-陳小華
-林美玲
-張志豪
-黃雅婷
-吳承恩</textarea>
+李小華
+陳怡君
+林志偉
+張雅婷</textarea>
             <div class="form-grid">
               <label>
-                抽出人數
+                抽出數量
                 <input id="nameCount" type="number" min="1" value="1" />
               </label>
               <label class="check-row">
                 <input id="nameRepeat" type="checkbox" />
-                允許重複
+                允許重複抽出
               </label>
             </div>
             <div class="actions">
@@ -94,24 +128,23 @@
             <div class="section-title">
               <div>
                 <p>幸運轉盤</p>
-                <h2>用轉盤抽獎，讓結果更有現場感</h2>
+                <h2>把選項放進轉盤，製造抽選儀式感</h2>
               </div>
               <label class="privacy-toggle">
                 <input class="privacy-check" type="checkbox" checked />
-                公開資料
+                顯示資料
               </label>
             </div>
-            <div class="privacy-note"><span>轉盤項目</span><span class="collapse-icon">收合</span></div>
+            <div class="privacy-note"><span>轉盤項目</span><span class="collapse-icon">已隱藏</span></div>
             <label class="private-field" for="wheelList">轉盤項目</label>
             <textarea class="private-content" id="wheelList" rows="10">一獎
 二獎
 三獎
-安慰獎
-再接再厲
-神秘禮物</textarea>
+加碼獎
+安慰獎</textarea>
             <div class="actions">
               <button class="main-button" id="spinWheel" type="button">開始旋轉</button>
-              <button class="ghost-button" id="removeWheelWinner" type="button">移除結果</button>
+              <button class="ghost-button" id="removeWheelWinner" type="button">移除中選項目</button>
               <button class="ghost-button" data-clear="wheelList" type="button">清除</button>
             </div>
           </div>
@@ -133,21 +166,21 @@
             <div class="section-title">
               <div>
                 <p>數字抽獎</p>
-                <h2>從號碼範圍中抽出結果</h2>
+                <h2>設定範圍，隨機抽出號碼</h2>
               </div>
               <label class="privacy-toggle">
                 <input class="privacy-check" type="checkbox" checked />
-                公開資料
+                顯示資料
               </label>
             </div>
-            <div class="privacy-note"><span>號碼設定</span><span class="collapse-icon">收合</span></div>
+            <div class="privacy-note"><span>數字設定</span><span class="collapse-icon">已隱藏</span></div>
             <div class="form-grid private-content">
               <label>
-                起始數字
+                起始號碼
                 <input id="numStart" type="number" value="1" />
               </label>
               <label>
-                結束數字
+                結束號碼
                 <input id="numEnd" type="number" value="50" />
               </label>
               <label>
@@ -156,7 +189,7 @@
               </label>
               <label class="check-row">
                 <input id="numSort" type="checkbox" checked />
-                由小到大
+                由小到大排序
               </label>
             </div>
             <label class="private-field" for="numExclude">排除號碼</label>
@@ -167,7 +200,7 @@
             </div>
           </div>
           <div class="tool-result">
-            <p class="result-label">抽號結果</p>
+            <p class="result-label">數字結果</p>
             <div class="result-box number-grid" id="numberResult">尚未抽號</div>
             <div class="result-actions">
               <button class="copy-button" data-copy="numberResult" type="button">複製結果</button>
@@ -181,29 +214,29 @@
             <div class="section-title">
               <div>
                 <p>隨機分組</p>
-                <h2>把名單隨機分成多組</h2>
+                <h2>輸入成員名單，自動平均分組</h2>
               </div>
               <label class="privacy-toggle">
                 <input class="privacy-check" type="checkbox" checked />
-                公開資料
+                顯示資料
               </label>
             </div>
-            <div class="privacy-note"><span>名單</span><span class="collapse-icon">收合</span></div>
+            <div class="privacy-note"><span>名單內容</span><span class="collapse-icon">已隱藏</span></div>
             <label class="private-field" for="groupList">名單</label>
             <textarea class="private-content" id="groupList" rows="10">王小明
-陳小華
-林美玲
-張志豪
-黃雅婷
-吳承恩
-李佳蓉
-周柏翰</textarea>
-            <div class="segmented" role="group" aria-label="分組方式">
+李小華
+陳怡君
+林志偉
+張雅婷
+黃柏翰
+吳佳玲
+周品妤</textarea>
+            <div class="segmented" role="group" aria-label="分組模式">
               <button class="segment active" data-group-mode="count" type="button">依組數</button>
               <button class="segment" data-group-mode="size" type="button">依每組人數</button>
             </div>
             <label>
-              數量
+              數值
               <input id="groupValue" type="number" min="1" value="2" />
             </label>
             <div class="actions">
@@ -226,14 +259,14 @@
             <div class="section-title">
               <div>
                 <p>機率抽獎</p>
-                <h2>依照獎項機率抽出結果</h2>
+                <h2>設定獎項機率，依權重抽出結果</h2>
               </div>
               <label class="privacy-toggle">
                 <input class="privacy-check" type="checkbox" checked />
-                公開資料
+                顯示資料
               </label>
             </div>
-            <div class="privacy-note"><span>獎項資料</span><span class="collapse-icon">收合</span></div>
+            <div class="privacy-note"><span>獎項設定</span><span class="collapse-icon">已隱藏</span></div>
             <div class="prize-list private-content" id="prizeList">
               <div class="prize-row">
                 <input type="text" value="一獎" aria-label="獎項名稱" />
@@ -277,31 +310,31 @@
       <section class="guide" id="guide">
         <div>
           <p class="eyebrow">Free Online Draw Flow</p>
-          <h2>免費線上抽獎流程</h2>
+          <h2>好抽工具箱使用流程</h2>
         </div>
         <ol>
-          <li>選擇免費抽獎工具</li>
-          <li>輸入名單、號碼或獎項</li>
-          <li>按下開始</li>
-          <li>查看結果並複製</li>
+          <li>選擇需要的抽獎工具</li>
+          <li>輸入名單、號碼或獎項設定</li>
+          <li>按下開始抽選</li>
+          <li>複製結果或投影全頁顯示</li>
         </ol>
       </section>
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <section class="presenter" id="presenter" aria-hidden="true" role="dialog" aria-label="免費線上抽獎全頁結果">
+    <section class="presenter" id="presenter" aria-hidden="true" role="dialog" aria-label="抽獎結果全頁顯示">
       <div class="presenter-top">
         <div>
-          <p id="presenterTool">免費線上抽獎結果</p>
-          <h2 id="presenterTitle">尚未抽獎</h2>
+          <p id="presenterTool">抽獎結果</p>
+          <h2 id="presenterTitle">全頁顯示</h2>
         </div>
         <button class="presenter-close" id="closePresenter" type="button" aria-label="關閉全頁顯示">關閉</button>
       </div>
-      <button class="presenter-stage" id="presenterStage" type="button" aria-label="點擊進行抽獎">
+      <button class="presenter-stage" id="presenterStage" type="button" aria-label="再次抽選">
         <div class="presenter-wheel" id="presenterWheel"></div>
         <div class="presenter-result" id="presenterResult">尚未抽獎</div>
-        <div class="presenter-hint">點擊畫面或按空白鍵抽獎</div>
+        <div class="presenter-hint">點擊畫面或按空白鍵再次抽選</div>
       </button>
     </section>
 

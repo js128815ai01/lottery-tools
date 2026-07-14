@@ -8,6 +8,7 @@ $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $output = Join-Path $root $OutputFolder
 
 $requiredFiles = @("index.html", "styles.css", "script.js")
+$optionalRootFiles = @("robots.txt", "sitemap.xml", ".nojekyll")
 
 foreach ($file in $requiredFiles) {
   $path = Join-Path $root $file
@@ -30,6 +31,13 @@ New-Item -ItemType Directory -Path $output | Out-Null
 
 foreach ($file in $requiredFiles) {
   Copy-Item -LiteralPath (Join-Path $root $file) -Destination $output
+}
+
+foreach ($file in $optionalRootFiles) {
+  $path = Join-Path $root $file
+  if (Test-Path $path) {
+    Copy-Item -LiteralPath $path -Destination $output
+  }
 }
 
 $assetsPath = Join-Path $root "assets"

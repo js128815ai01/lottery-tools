@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://js128815ai01.github.io/lottery-tools/sitemap.xml

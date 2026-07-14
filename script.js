@@ -2,10 +2,11 @@ const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
 const palette = ["#0f766e", "#e85d4f", "#f3b43f", "#3d7aa8", "#68a35c", "#d76f32", "#6a8fcb", "#c84b7a"];
+const fullCircle = Math.PI * 2;
+
 let groupMode = "count";
 let wheelRotation = 0;
 let lastWheelWinner = "";
-const fullCircle = Math.PI * 2;
 let activePresenterTool = "";
 
 const toolMap = {
@@ -25,9 +26,9 @@ function linesFrom(textareaId) {
 
 function shuffle(items) {
   const list = [...items];
-  for (let i = list.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [list[i], list[j]] = [list[j], list[i]];
+  for (let index = list.length - 1; index > 0; index -= 1) {
+    const target = Math.floor(Math.random() * (index + 1));
+    [list[index], list[target]] = [list[target], list[index]];
   }
   return list;
 }
@@ -48,11 +49,13 @@ function setResult(target, items, emptyText = "沒有可顯示的結果") {
   const box = typeof target === "string" ? $(`#${target}`) : target;
   box.innerHTML = "";
   const list = Array.isArray(items) ? items : [items];
+
   if (!list.length) {
     box.textContent = emptyText;
     syncPresenter();
     return;
   }
+
   list.forEach((item) => {
     const element = document.createElement("span");
     element.className = "result-item";
@@ -97,10 +100,12 @@ function animateResult(resultId, pool, finalCallback, options = {}) {
   function tick(now) {
     const sample = sampleItems(pool, count).map((item, index) => (prefix ? `${index + 1}. ${item}` : item));
     setResult(resultId, sample.length ? sample : "抽選中...");
+
     if (now - start < duration) {
       window.setTimeout(() => requestAnimationFrame(tick), interval);
       return;
     }
+
     finalCallback();
     markFinal(resultId);
     syncPresenter();
@@ -270,7 +275,10 @@ function drawNumbers() {
 
   const result = shuffle(pool).slice(0, count);
   if ($("#numSort").checked) result.sort((a, b) => a - b);
-  animateResult("numberResult", pool.map(String), () => setResult("numberResult", result.map(String)), { count, duration: 950 });
+  animateResult("numberResult", pool.map(String), () => setResult("numberResult", result.map(String)), {
+    count,
+    duration: 950,
+  });
 }
 
 function drawWheel() {
@@ -412,36 +420,33 @@ function makeGroups() {
   const groups = Array.from({ length: groupCount }, () => []);
   names.forEach((name, index) => groups[index % groupCount].push(name));
 
-  animateResult("groupResult", names, () => {
-    resultBox.innerHTML = "";
-    groups.forEach((group, index) => {
-      const block = document.createElement("div");
-      block.className = "group-block";
-      block.innerHTML = `<strong>第 ${index + 1} 組</strong>${group.join("、")}`;
-      resultBox.appendChild(block);
-    });
-    syncPresenter();
-  }, { count: Math.min(4, names.length), duration: 1000 });
-  return;
-
-  resultBox.innerHTML = "";
-  groups.forEach((group, index) => {
-    const block = document.createElement("div");
-    block.className = "group-block";
-    block.innerHTML = `<strong>第 ${index + 1} 組</strong>${group.join("、")}`;
-    resultBox.appendChild(block);
-  });
-  syncPresenter();
+  animateResult(
+    "groupResult",
+    names,
+    () => {
+      resultBox.innerHTML = "";
+      groups.forEach((group, index) => {
+        const block = document.createElement("div");
+        block.className = "group-block";
+        block.innerHTML = `<strong>第 ${index + 1} 組</strong>${group.join("、")}`;
+        resultBox.appendChild(block);
+      });
+      syncPresenter();
+    },
+    { count: Math.min(4, names.length), duration: 1000 }
+  );
 }
 
 function prizeRows() {
-  return $$("#prizeList .prize-row").map((row) => {
-    const [nameInput, chanceInput] = row.querySelectorAll("input");
-    return {
-      name: nameInput.value.trim(),
-      chance: Number(chanceInput.value),
-    };
-  }).filter((prize) => prize.name && Number.isFinite(prize.chance) && prize.chance > 0);
+  return $$("#prizeList .prize-row")
+    .map((row) => {
+      const [nameInput, chanceInput] = row.querySelectorAll("input");
+      return {
+        name: nameInput.value.trim(),
+        chance: Number(chanceInput.value),
+      };
+    })
+    .filter((prize) => prize.name && Number.isFinite(prize.chance) && prize.chance > 0);
 }
 
 function drawChance() {
@@ -455,31 +460,7 @@ function drawChance() {
   }
 
   const results = [];
-  const animatedResults = [];
-  for (let i = 0; i < times; i += 1) {
-    const hit = Math.random() * total;
-    let cursor = 0;
-    for (const prize of prizes) {
-      cursor += prize.chance;
-      if (hit <= cursor) {
-        animatedResults.push(prize.name);
-        break;
-      }
-    }
-  }
-
-  animateResult(
-    "chanceResult",
-    prizes.map((prize) => prize.name),
-    () => {
-      const weightText = total === 100 ? "" : `（目前總權重 ${total}%）`;
-      setResult("chanceResult", animatedResults.map((item, index) => `${index + 1}. ${item}${index === 0 ? weightText : ""}`));
-    },
-    { count: times, duration: 950 }
-  );
-  return;
-
-  for (let i = 0; i < times; i += 1) {
+  for (let index = 0; index < times; index += 1) {
     const hit = Math.random() * total;
     let cursor = 0;
     for (const prize of prizes) {
@@ -491,8 +472,15 @@ function drawChance() {
     }
   }
 
-  const totalText = total === 100 ? "" : `（目前總權重 ${total}%）`;
-  setResult("chanceResult", results.map((item, index) => `${index + 1}. ${item}${index === 0 ? totalText : ""}`));
+  animateResult(
+    "chanceResult",
+    prizes.map((prize) => prize.name),
+    () => {
+      const weightText = total === 100 ? "" : `（目前總權重 ${total}%）`;
+      setResult("chanceResult", results.map((item, index) => `${index + 1}. ${item}${index === 0 ? weightText : ""}`));
+    },
+    { count: times, duration: 950 }
+  );
 }
 
 function addPrize(name = "", chance = 10) {
@@ -541,7 +529,7 @@ function bindPrivacyToggles() {
     panel.classList.toggle("is-private", !checkbox.checked);
     checkbox.addEventListener("change", () => {
       panel.classList.toggle("is-private", !checkbox.checked);
-      showToast(checkbox.checked ? "已公開資料" : "已隱藏資料");
+      showToast(checkbox.checked ? "已顯示資料" : "已隱藏資料");
     });
   });
 }
