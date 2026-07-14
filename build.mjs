@@ -12,6 +12,7 @@ const rootFiles = [
   "script.js",
   "robots.txt",
   "sitemap.xml",
+  "ads.txt",
   ".nojekyll",
 ];
 
